@@ -1,5 +1,5 @@
 /* jshint camelcase:false, unused:false */
-/* global ajax */
+/* global ajax, _ */
 
 
 (function(){
@@ -30,6 +30,10 @@
     foodObject.sugar = $(this).find('.sugar').text() * 1;
     foodObject.carbs = $(this).find('.carbs').text() * 1;
     foodObject.fat = $(this).find('.fat').text() * 1;
+    foodObject.calories = $(this).find('.calories').text() * 1;
+
+    // var array = _(foodObject).toArray();
+    // console.log(array);
   }
 
   function submitFood(){
@@ -47,6 +51,7 @@
         var listItem = `<div class='food-result' data-id=${i}>
                           <h3 class='brand'>${data.hits[i].fields.brand_name}</h3>
                           <p class='name'>${data.hits[i].fields.item_name}</p>
+                          <p class='calories hidden'>${data.hits[i].fields.nf_calories}</p>
                           <p class='cholesterol hidden'>${data.hits[i].fields.nf_cholesterol}</p>
                           <p class='fiber hidden'>${data.hits[i].fields.nf_dietary_fiber}</p>
                           <p class='protein hidden'>${data.hits[i].fields.nf_protein}</p>
