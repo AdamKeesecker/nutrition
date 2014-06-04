@@ -2,7 +2,7 @@ extends ../shared/template
 
 block content
   h1 New Food Item
-  #user(data-id='#{id}')= id
+  #user(data-id='#{user._id}')= user.email
 
   input#foodInput(type='text')
   button#search Search Foods

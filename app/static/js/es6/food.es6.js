@@ -33,8 +33,10 @@
   }
 
   function submitFood(){
-    //var userId = sdflkj;
-    //ajax(`/`)
+    var userId = $('#user').attr('data-id');
+    ajax(`/${userId}/addFood`, 'post', foodObject, html=>{
+      console.log(html);
+    });
   }
 
   function getFoods(phrase){

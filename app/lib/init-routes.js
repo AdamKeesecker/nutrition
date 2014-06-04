@@ -32,6 +32,8 @@ function load(app, fn){
   app.post('/register', dbg, users.register);
   app.get('/login', dbg, users.login);
 
+  app.post('/:userId/addFood', dbg, users.update);
+
 
   console.log('Routes Loaded');
   fn();

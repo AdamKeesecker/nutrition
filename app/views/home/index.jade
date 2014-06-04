@@ -15,11 +15,11 @@ block content
       .clear
       input#register-input-password(type='password', name='password', placeholder='Password')
       .clear
-      button#submit-register(href='#') Create Account
+      button#submit-register Create Account
 
-    form#form-login(action='/login', method='get')
+    form#form-login(method='get', action='/login')
       input#login-input-email(type='text', name='email', placeholder='Email Address')
       .clear
       input#login-input-password(type='password', name='password', placeholder='Password')
       .clear
-      button#submit-login(href='#') Login
+      button#submit-login Login
