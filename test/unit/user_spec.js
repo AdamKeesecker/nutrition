@@ -28,6 +28,7 @@ describe('User', function(){
     global.nss.db.collection('users').drop(function(){
       User.register({email:'sue@aol.com', password:'abcd'}, function(u){
         sue = u;
+        console.log(u);
         done();
       });
     });
@@ -75,7 +76,7 @@ describe('User', function(){
     });
 
     it('should return a user from a cookie Id', function(done){
-      User.findById(sue._id.toString(), function(u){
+      User.findByUserId(sue._id.toString(), function(u){
         expect(u).to.be.ok;
         expect(u).to.be.an.instanceof(User);
         expect(u._id).to.be.an.instanceof(Mongo.ObjectID);
@@ -85,21 +86,31 @@ describe('User', function(){
     });
 
     it('should NOT return a user', function(done){
-      User.findById('123456789111', function(u){
+      User.findByUserId('123456789111', function(u){
         expect(u).to.be.null;
         done();
       });
     });
   });
 
-  //
-  // describe('.lookup', function(){
-  //   it('should contain the userId in all pages', function(done){
-  //     User.findByUserId(req.session.userId, u=>{
-  //       expect(u).to.eql(sue.userId);
-  //       done();
-  //     });
-  //   });
-  // });
+
+  describe('.lookup', function(){
+    it('should contain the userId in all pages', function(done){
+      User.findByUserId(sue._id.toString(), function(u){
+        expect(u._id.toString()).to.eql(sue._id.toString());
+        done();
+      });
+    });
+  });
+
+  describe('#updateIntake', function(){
+    it('should update the User obj with the intake array', function(done){
+      User.findByUserId(sue._id.toString(), function(u){
+        sue.intake = [{name:'chicken', calories:100, cholestoral:200, fiber:500, protien:4, sodium:200, sugar:150, carbs:20, fat:100000}];
+        console.log(sue);
+        done();
+      });
+    });
+  });
 
 });
