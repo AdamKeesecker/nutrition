@@ -12,6 +12,8 @@ class User{
         var user = new User();
         user.email = obj.email;
         user.password = bcrypt.hashSync(obj.password, 8);
+        user.intake = [];
+        user.stats = {};
         users.save(user, ()=>fn(user));
       }
     });
@@ -41,7 +43,9 @@ class User{
       result = _.create(User.prototype, result);
       func(result);
     });
-  }// end findById
+  }
+
+  
 
 }
 
