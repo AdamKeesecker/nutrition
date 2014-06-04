@@ -4,7 +4,6 @@ block content
   h1 HOMEPAGE
 
   #centerme
-    h1 TDD To Do
     a#btn-register(href='#') Register
     a#btn-login(href='#') Login
 
@@ -17,7 +16,7 @@ block content
       .clear
       button#submit-register Create Account
 
-    form#form-login(method='get', action='/login')
+    form#form-login(method='post', action='/login')
       input#login-input-email(type='text', name='email', placeholder='Email Address')
       .clear
       input#login-input-password(type='password', name='password', placeholder='Password')

@@ -16,7 +16,7 @@ exports.register = (req, res)=>{
 };
 
 exports.login = (req, res)=>{
-	User.login(req.query, user=>{
+	User.login(req.body, user=>{
 		req.session.userId = user._id;
 		res.render('users/dashboard', {user: user});
 	});
@@ -25,7 +25,7 @@ exports.login = (req, res)=>{
 exports.search = (req, res)=>{
   var id = req.session.userId;
   User.findByUserId(id, user=>{
-    res.render('users/search', {user:user});
+    res.render('users/search', {user: user});
   });
 };
 
