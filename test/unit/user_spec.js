@@ -92,4 +92,14 @@ describe('User', function(){
     });
   });
 
+  //
+  // describe('.lookup', function(){
+  //   it('should contain the userId in all pages', function(done){
+  //     User.findByUserId(req.session.userId, u=>{
+  //       expect(u).to.eql(sue.userId);
+  //       done();
+  //     });
+  //   });
+  // });
+
 });

@@ -34,7 +34,8 @@ class User{
     });
   }
 
-  static findById(id, func){
+
+  static findByUserId(id, func){
     if(typeof id === 'string'){
       if(id.length !== 24){func(null); return;}
       id = Mongo.ObjectID(id);
@@ -45,7 +46,16 @@ class User{
     });
   }
 
-  
+  updateIntake(foodData, fn){
+    // var user = req.session.userId;
+    // user.intake = foodData.intake;
+    // user.stats = foodData.stats;
+    //save
+  }
+
+
+
+
 
 }
 

@@ -15,14 +15,19 @@ module.exports = (req, res, next)=>{
 
 function load(app, fn){
   var home = traceur.require(__dirname + '/../routes/home.js');
-  //var users = traceur.require(__dirname + '/../routes/users.js');
+  var users = traceur.require(__dirname + '/../routes/users.js');
 
+
+
+  app.all('*', users.lookup);
 
   app.get('/', dbg, home.index);
-//  app.get('/users/dashboard', dbg, users.dashboard);
-  // app.get('/users/foodStats', dbg, users.foodStats);
-  // app.get('/users/show/:id', dbg, users.show); //?
 
+  app.get('/users/search', dbg, users.search);
+
+  // app.get('/users/dashboard', dbg, users.dashboard);
+  // app.get('/users/foodStats', dbg, users.foodStats);
+  // app.get('/users/showFood/:id', dbg, users.show);
 
 
 

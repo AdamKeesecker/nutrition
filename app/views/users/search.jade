@@ -2,8 +2,11 @@ extends ../shared/template
 
 block content
   h1 New Food Item
+  #user(data-id='#{id}')= id
 
   input#foodInput(type='text')
   button#search Search Foods
 
   #results
+
+  button#submit-food Submit
