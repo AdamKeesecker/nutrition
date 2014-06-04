@@ -1,4 +1,25 @@
 extends ../shared/template
 
 block content
-  h1= title
+  h1 HOMEPAGE
+
+  #centerme
+    h1 TDD To Do
+    a#btn-register(href='#') Register
+    a#btn-login(href='#') Login
+
+    .clear
+
+    form#form-register(action='/register', method='post')
+      input#register-input-email(type='text', name='email', placeholder='Email Address')
+      .clear
+      input#register-input-password(type='password', name='password', placeholder='Password')
+      .clear
+      button#submit-register Create Account
+
+    form#form-login(method='get', action='/login')
+      input#login-input-email(type='text', name='email', placeholder='Email Address')
+      .clear
+      input#login-input-password(type='password', name='password', placeholder='Password')
+      .clear
+      button#submit-login Login

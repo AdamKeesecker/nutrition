@@ -22,6 +22,7 @@ function load(app, fn){
   app.all('*', users.lookup);
 
   app.get('/', dbg, home.index);
+
   app.get('/users/search', dbg, users.search);
 
   // app.get('/users/dashboard', dbg, users.dashboard);
@@ -32,6 +33,8 @@ function load(app, fn){
   app.post('/login', dbg, users.login);
 
   app.post('/:id/addFood', dbg, users.update);
+
+  app.post('/:userId/addFood', dbg, users.update);
 
 
   console.log('Routes Loaded');

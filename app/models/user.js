@@ -55,19 +55,19 @@ class User{
     });
   }
 
-  save(fn){
-    if(this._id){
-      saveUser(this);
-    }else{
-      User.findByEmail(this.email, user=>{
-        if(user){
-          fn(null);
-        }else{
-          saveUser(this);
-        }
-      });
-    }
-
+  // save(fn){
+  //   if(this._id){
+  //     saveUser(this);
+  //   }else{
+  //     User.findByEmail(this.email, user=>{
+  //       if(user){
+  //         fn(null);
+  //       }else{
+  //         saveUser(this);
+  //       }
+  //     });
+  //   }
+  //
 
 
 
