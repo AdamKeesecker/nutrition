@@ -25,14 +25,12 @@ function load(app, fn){
 
   app.get('/users/search', dbg, users.search);
 
-  // app.get('/users/dashboard', dbg, users.dashboard);
+  app.get('/users/dashboard', dbg, users.dashboard);
   // app.get('/users/foodStats', dbg, users.foodStats);
   // app.get('/users/showFood/:id', dbg, users.show);
 
   app.post('/register', dbg, users.register);
   app.post('/login', dbg, users.login);
-
-  app.post('/:id/addFood', dbg, users.update);
 
   app.post('/:userId/addFood', dbg, users.update);
 

@@ -47,27 +47,44 @@ class User{
   }
 
   updateIntake(foodData, fn){
-    var user = this.userId;
-    users.findByUserId(user, (e,u)=>{
-      u.intake = foodData.intake;
-      u.stats = foodData.stats;
-      u.save(user);
-    });
+    console.log(foodData);
+    this.intake.push(foodData);
+    users.save(this, ()=>fn(this));
   }
 
-  // save(fn){
-  //   if(this._id){
-  //     saveUser(this);
-  //   }else{
-  //     User.findByEmail(this.email, user=>{
-  //       if(user){
-  //         fn(null);
-  //       }else{
-  //         saveUser(this);
-  //       }
-  //     });
-  //   }
-  //
+  updateStats(user, fn){
+    var totalCals = 0;
+    var totalChol = 0;
+    var totalFiber = 0;
+    var totalProtein = 0;
+    var totalSodium = 0;
+    var totalSugar = 0;
+    var totalCarbs = 0;
+    var totalFat = 0;
+
+    for(var i=0; i<user.intake.length; i++){
+      totalCals += user.intake[i].calories * 1;
+      totalChol += user.intake[i].cholesterol * 1;
+      totalFiber += user.intake[i].fiber * 1;
+      totalProtein += user.intake[i].protein * 1;
+      totalSodium += user.intake[i].sodium * 1;
+      totalSugar += user.intake[i].sugar * 1;
+      totalCarbs += user.intake[i].carbs * 1;
+      totalFat += user.intake[i].fat * 1;
+
+      user.stats.totalCals = totalCals;
+      user.stats.totalChol = totalChol;
+      user.stats.totalFiber = totalFiber;
+      user.stats.totalProtein = totalProtein;
+      user.stats.totalSodium = totalSodium;
+      user.stats.totalSugar = totalSugar;
+      user.stats.totalCarbs = totalCarbs;
+      user.stats.totalFat = totalFat;
+    }
+    
+    users.save(this, ()=>fn(this));
+  }
+
 
 
 

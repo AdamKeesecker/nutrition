@@ -17,7 +17,7 @@ block content
       .clear
       button#submit-register Create Account
 
-    form#form-login(method='get', action='/login')
+    form#form-login(method='post', action='/login')
       input#login-input-email(type='text', name='email', placeholder='Email Address')
       .clear
       input#login-input-password(type='password', name='password', placeholder='Password')

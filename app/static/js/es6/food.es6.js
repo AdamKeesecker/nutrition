@@ -36,6 +36,7 @@
     var userId = $('#user').attr('data-id');
     ajax(`/${userId}/addFood`, 'post', foodObject, html=>{
       console.log(html);
+      window.location = '/users/dashboard';
     });
   }
 

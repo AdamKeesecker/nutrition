@@ -11,14 +11,14 @@ var User = traceur.require(__dirname + '/../models/user.js');
 exports.register = (req, res)=>{
 	User.register(req.body, user=>{
 		req.session.userId = user._id;
-		res.render('users/dashboard', {user: user});
+		res.redirect('users/dashboard');
 	});
 };
 
 exports.login = (req, res)=>{
-	User.login(req.query, user=>{
+	User.login(req.body, user=>{
 		req.session.userId = user._id;
-		res.render('users/dashboard', {user: user});
+		res.redirect('users/dashboard');
 	});
 };
 
@@ -38,6 +38,16 @@ exports.lookup = (req, res, next)=>{
 
 exports.update = (req,res)=>{
   User.findByUserId(req.session.userId, u=>{
+    u.updateIntake(req.body, ()=>{
+      u.updateStats(u, ()=>{
+        res.render('users/dashboard', {user:u});
+      });
+    });
+  });
+};
 
+exports.dashboard = (req, res)=>{
+  User.findByUserId(req.session.userId, u=>{
+    res.render('users/dashboard',{user:u});
   });
 };
