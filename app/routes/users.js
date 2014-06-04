@@ -1,3 +1,7 @@
+/* jshint unused:false */
+
+
+
 'use strict';
 var traceur = require('traceur');
 var User = traceur.require(__dirname + '/../models/user.js');
@@ -29,5 +33,11 @@ exports.lookup = (req, res, next)=>{
   User.findByUserId(req.session.userId, u=>{
     res.locals.user = u;
     next();
+  });
+};
+
+exports.update = (req,res)=>{
+  User.findByUserId(req.session.userId, u=>{
+
   });
 };

@@ -47,10 +47,12 @@ class User{
   }
 
   updateIntake(foodData, fn){
-    // var user = req.session.userId;
-    // user.intake = foodData.intake;
-    // user.stats = foodData.stats;
-    //save
+    var user = this.userId;
+    users.findByUserId(user, (e,u)=>{
+      u.intake = foodData.intake;
+      u.stats = foodData.stats;
+      u.save(user);
+    });
   }
 
 
