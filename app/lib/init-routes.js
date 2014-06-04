@@ -29,7 +29,9 @@ function load(app, fn){
   // app.get('/users/showFood/:id', dbg, users.show);
 
   app.post('/register', dbg, users.register);
-  app.get('/login', dbg, users.login);
+  app.post('/login', dbg, users.login);
+
+  app.post('/:id/addFood', dbg, users.update);
 
 
   console.log('Routes Loaded');
