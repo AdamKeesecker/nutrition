@@ -18,11 +18,15 @@ function load(app, fn){
   var users = traceur.require(__dirname + '/../routes/users.js');
 
 
-  app.get('/', dbg, home.index);
-  app.get('/users/dashboard', dbg, users.dashboard);
-  app.get('/users/foodStats', dbg, users.foodStats);
-  app.get('/users/show/:id', dbg, users.show); //?
 
+  app.all('*', users.lookup);
+
+  app.get('/', dbg, home.index);
+  app.get('/users/search', dbg, users.search);
+
+  // app.get('/users/dashboard', dbg, users.dashboard);
+  // app.get('/users/foodStats', dbg, users.foodStats);
+  // app.get('/users/showFood/:id', dbg, users.show);
 
 
 

@@ -17,3 +17,19 @@ exports.login = (req, res)=>{
 		res.redirect('/users/home');
 	});
 };
+
+exports.search = (req, res)=>{
+  var id = req.session.userId;
+  User.findByUserId(id, ()=>{
+    res.render('/users/search', {id:id});
+  });
+};
+
+exports.lookup = (req, res, next)=>{
+  User.findByUserId(req.session.userId, u=>{
+    console.log('============');
+    console.log(u);
+    res.locals.user = u;
+    next();
+  });
+};
