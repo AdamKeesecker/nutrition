@@ -3,7 +3,30 @@ extends ../shared/template
 block content
   h1= user.email
 
+  button.md-trigger#addFood(data-modal='modal-1') I ate somethin
+
+  #modal-1.md-modal.md-effect-1
+    .md-content
+      h1 here is the modal
+      h1 New Food Item
+      #user(data-id='#{user._id}')= user.email
+
+      input#foodInput(type='text')
+      button#search Search Foods
+
+      #results
+
+      button#submit-food Submit
+      button.md-close Close Window
+
+    .md-overlay
+
   #graph
 
+  #foods
+    each food in user.intake
+      h3= food.name
+
 block scripts
-  script(src='/js/es6/compiled/chart.js')
+  script(src='/js/vendor/classie.js')
+  script(src='/js/vendor/modalEffects.js')

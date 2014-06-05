@@ -53,7 +53,9 @@ class User{
   }
 
   updateStats(user, fn){
-    var totalCals = 0;
+    console.log('*********');
+    console.log('MADE IT TO HERE');
+    //var totalCals = 0;
     var totalChol = 0;
     var totalFiber = 0;
     var totalProtein = 0;
@@ -63,7 +65,7 @@ class User{
     var totalFat = 0;
 
     for(var i=0; i<user.intake.length; i++){
-      totalCals += user.intake[i].calories * 1;
+      //totalCals += user.intake[i].calories * 1;
       totalChol += user.intake[i].cholesterol * 1;
       totalFiber += user.intake[i].fiber * 1;
       totalProtein += user.intake[i].protein * 1;
@@ -72,7 +74,7 @@ class User{
       totalCarbs += user.intake[i].carbs * 1;
       totalFat += user.intake[i].fat * 1;
 
-      user.stats.totalCals = parseInt(totalCals);
+      // user.stats.totalCals = parseInt(totalCals);
       user.stats.totalChol = parseInt(totalChol);
       user.stats.totalFiber = parseInt(totalFiber);
       user.stats.totalProtein = parseInt(totalProtein);
