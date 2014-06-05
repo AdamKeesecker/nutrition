@@ -91,6 +91,7 @@
       graph.validateData();
 
       //var htmlz = `<h2>${userObject.intake[j].name}</h2>`;
+      $('#foods').empty();
 
       for(var j = 0; j < userObject.intake.length; j++){
         var htmlz =  `<a data-modal=modal-${j} class="md-trigger eaten">${userObject.intake[j].name}</a>
