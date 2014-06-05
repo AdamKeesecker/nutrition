@@ -14,13 +14,13 @@
     $('#search').click(search);
     $('body').on('click', '.food-result', selectFoodObject);
     $('#submit-food').click(submitFood);
-    initChart();
+    //initChart();
   }
 
-  function initChart(){
-    submitFood();
-    makeChart();
-  }
+  // function initChart(){
+  //   submitFood();
+  //   makeChart();
+  // }
 
   function search(){
     var phrase = $('#foodInput').val();
@@ -46,9 +46,12 @@
   var userObject;
   function submitFood(){
     var userId = $('#user').attr('data-id');
+    console.log(userId);
+  
     ajax(`/${userId}/addFood`, 'post', foodObject, obj=>{
 
       userObject = obj.user;
+      console.log(userObject);
 
       var standardsObject = {};
     //  standardsObject.calories = 2000;
