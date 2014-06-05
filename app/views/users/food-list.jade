@@ -1,0 +1,7 @@
+each food, index in user.intake
+  button.md-trigger(data-modal='modal-#{index}')= food.name
+
+  div(id='modal-#{index}', class='md-modal md-effect-1')
+    .md-content
+      h3 food.name
+      button.md-close Close Window

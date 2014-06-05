@@ -1,27 +1,49 @@
 extends ../shared/template
 
 block content
-  #user(data-id='#{user._id}')= user.email
+  #dash-wrapper
+    #user(data-id='#{user._id}')= user.email
 
-  button.md-trigger#addFood(data-modal='modal-1') I ate somethin
+    #btn-eat
+      button.md-trigger#addFood(data-modal='modal-a') I ate somethin.
 
-  #modal-1.md-modal.md-effect-1
-    .md-content
-      input#foodInput(type='text')
-      button#search Search Foods
+    #modal-a.md-modal.md-effect-1
+      .md-content
+        h2 What did you eat?
+        input#foodInput(type='text', placeholder='Search and choose closest result')
+        button#search Search Foods
 
-      #results
+        #results
 
-      button#submit-food Submit
-      button.md-close Close Window
+        button#submit-food Submit
+        button.md-close Close Window
+    .md-overlay
 
-  .md-overlay
+    #graph
 
-  #graph
+    #foods
+    
+      //- h3 Today's Intake:
+      //- each food, index in user.intake
+      //-   a.eaten.md-trigger(data-modal='modal-#{index}')= food.name
+      //-   .clear
+      //-
+      //-   div(id='modal-#{index}', class='md-modal md-effect-1')
+      //-     .md-content
+      //-       .details
+      //-         h3= food.name
+      //-         p Protein: #{food.protein}
+      //-         p Carbohydrates: #{food.carbs}
+      //-         p Fat: #{food.fat}
+      //-         p Sodium: #{food.sodium}
+      //-         p Fiber: #{food.fiber}
+      //-         p Cholesterol: #{food.cholesterol}
+      //-         p Sugar: #{food.sugar}
+      //-       button.md-close Close Window
+      //-
+      .md-overlay
+    .clear
 
-  #foods
-    each food in user.intake
-      h3= food.name
 
 block scripts
   script(src='/js/vendor/classie.js')

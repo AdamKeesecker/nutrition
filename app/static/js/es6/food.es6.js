@@ -13,6 +13,8 @@
   function init(){
     $('#search').click(search);
     $('body').on('click', '.food-result', selectFoodObject);
+    $('body').on('click', '.eaten', showEatenDetails);
+    $('body').on('click', '.close-deets', closeDeets);
     $('#submit-food').click(submitFood);
     //initChart();
   }
@@ -28,6 +30,8 @@
   }
 
   function selectFoodObject(){
+    $(this).addClass('result-selected');
+
     foodObject = {};
     foodObject.name = $(this).find('.name').text();
     foodObject.cholesterol = $(this).find('.cholesterol').text() * 1 || 0;
@@ -47,7 +51,7 @@
   function submitFood(){
     var userId = $('#user').attr('data-id');
     console.log(userId);
-  
+
     ajax(`/${userId}/addFood`, 'post', foodObject, obj=>{
 
       userObject = obj.user;
@@ -55,19 +59,24 @@
 
       var standardsObject = {};
     //  standardsObject.calories = 2000;
-      standardsObject.fat = 65;
       standardsObject.cholesterol = 300;
-      standardsObject.sodium = 24;
-      standardsObject.carbohydrates = 300;
       standardsObject.fiber = 25;
       standardsObject.protein = 50;
+      standardsObject.sodium = 24;
       standardsObject.sugar = 25;
+      standardsObject.carbohydrates = 300;
+      standardsObject.fat = 65;
 
       var standardKeys = Object.keys(standardsObject);
       var userKeys = Object.keys(userObject.stats);
 
+      console.log(standardKeys);
+      console.log(userKeys);
+
       $('.md-close').trigger('click');
       $('#graph').empty();
+      $('#foodInput').empty();
+      $('#results').empty();
 
       makeChart();
 
@@ -78,8 +87,39 @@
         graphObj.standardStat = standardsObject[`${standardKeys[i]}`];
         graph.dataProvider.push(graphObj);
       }
+
       graph.validateData();
+
+      //var htmlz = `<h2>${userObject.intake[j].name}</h2>`;
+
+      for(var j = 0; j < userObject.intake.length; j++){
+        var htmlz =  `<a data-modal=modal-${j} class="md-trigger eaten">${userObject.intake[j].name}</a>
+                      <div id=modal-${j} class="hidden deets">
+                        <div class="md-content">
+                          <h3>${userObject.intake[j].name}</h3>
+                          <p>Fat: ${userObject.intake[j].fat}</p>
+                          <p>Cholesterol: ${userObject.intake[j].cholesterol}</p>
+                          <p>Fiber: ${userObject.intake[j].fiber}</p>
+                          <p>Protein: ${userObject.intake[j].protein}</p>
+                          <p>Sodium: ${userObject.intake[j].sodium}</p>
+                          <p>Sugar: ${userObject.intake[j].sugar}</p>
+                          <p>Carbohydrates: ${userObject.intake[j].carbs}</p>
+                          <button class="close-deets">Close Window</button>
+                        </div>
+                      </div>`;
+        $('#foods').prepend(htmlz);
+      }
+      //location.reload();
+
     }, 'json');
+  }
+
+  function showEatenDetails(){
+    $(this).next().fadeIn();
+  }
+
+  function closeDeets(){
+    $(this).parent().fadeOut();
   }
 
   function getFoods(phrase){
@@ -87,7 +127,7 @@
     $.getJSON(url, data=>{
       for(var i =0; i<data.hits.length; i++){
         var listItem = `<div class='food-result' data-id=${i}>
-                          <h3 class='brand'>${data.hits[i].fields.brand_name}</h3>
+                          <h4 class='brand'>${data.hits[i].fields.brand_name}</h3>
                           <p class='name'>${data.hits[i].fields.item_name}</p>
                           <p class='calories hidden'>${data.hits[i].fields.nf_calories}</p>
                           <p class='cholesterol hidden'>${data.hits[i].fields.nf_cholesterol}</p>
@@ -97,7 +137,6 @@
                           <p class='sugar hidden'>${data.hits[i].fields.nf_sugars}</p>
                           <p class='carbs hidden'>${data.hits[i].fields.nf_total_carbohydrate}</p>
                           <p class='fat hidden'>${data.hits[i].fields.nf_total_fat}</p>
-                          <hr>
                         </div>`;
         $('#results').append(listItem);
       }
@@ -149,14 +188,14 @@
         }],
         'startDuration': 1,
         'graphs': [{
-            'balloonText': '[[category]]: <b>[[value]]</b>',
+            'balloonText': 'Recommended: [[category]]: <b>[[value]]</b>',
             'fillAlphas': 0.9,
             'lineAlpha': 0.2,
             'title': 'Recommended Intake',
             'type': 'column',
             'valueField': 'standardStat'
         }, {
-            'balloonText': '[[category]]: <b>[[value]]</b>',
+            'balloonText': 'Your [[category]] today: <b>[[value]]</b>',
             'fillAlphas': 0.9,
             'lineAlpha': 0.2,
             'title': 'Your Intake',

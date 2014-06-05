@@ -1,3 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Arvo:400,700);
+
+@main-color: #75bdde;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arvo', serif;
+}
+
 .clear {
   width: 100%;
   clear:both;
@@ -5,6 +15,54 @@
 
 .hidden {
   display:none;
+}
+
+header {
+  background-color: @main-color;
+  color: #fff;
+  text-align:center;
+  margin-bottom:25px;
+
+  #header-content {
+    width:90%;
+    margin: 0 auto;
+    padding: 20px 0;
+
+    #logo {
+      float:left;
+
+      img {
+        width: 250px;
+        height: auto;
+      }
+    }
+
+    nav {
+      float:right;
+
+      ul {
+        list-style-type:none;
+        margin:0;
+        padding: 5px 0 0 0;
+
+        li {
+          display:inline-block;
+          margin-right: 10px;
+          padding: 5px 10px;
+          border-radius: 2px;
+          border:1px solid #fff;
+
+          a {
+            text-decoration:none;
+            color:#fff;
+          }
+        }
+      }
+    }
+
+
+  }
+
 }
 
 #graph {
@@ -19,6 +77,174 @@
   margin: 0 auto;
   height: 350px;
   overflow:scroll;
+}
+
+#container {
+  text-align:center;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#centerme {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+a#btn-register, a#btn-login {
+  display:inline-block;
+  width: 40%;
+  padding: 10px 0;
+  border: 1px solid #ccc;
+  margin-bottom: 15px;
+  text-decoration:none;
+  color:#333;
+}
+
+a#btn-login {
+  border-top-left-radius:0px;
+  border-bottom-left-radius:0px;
+  border-top-right-radius:2px;
+  border-bottom-right-radius:2px;
+}
+
+a#btn-register {
+  border-top-right-radius:0px;
+  border-bottom-right-radius:0px;
+  border-top-left-radius:2px;
+  border-bottom-left-radius:2px;
+}
+
+.btn-selected {
+  background-color: @main-color;
+  color: #fff !important;
+  border: 1px solid #61a0b9;
+}
+
+a#btn-register:hover, a#btn-login:hover {
+  background-color:@main-color;
+  color:#fff;
+  border: 1px solid #61a0b9;
+}
+
+a#submit-register, a#submit-login {
+  width: 40%;
+  max-width: 300px;
+  min-width:200px;
+  display:block;
+  margin:0 auto;
+  padding: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-bottom: 15px;
+  text-decoration:none;
+  color:#333;
+}
+
+input {
+  width: 80%;
+  padding: 15px;
+  border-radius: 2px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  font-family: 'Arvo', serif;
+}
+
+button {
+  padding: 15px 30px;
+  border:none;
+  width: 250px;
+  margin: 0 auto 20px auto;
+  background-color: @main-color;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 18px;
+  font-family: 'Arvo', serif;
+}
+
+button:hover {
+  background-color: #61a0b9;
+}
+
+#dash-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  text-align:left;
+}
+
+#btn-eat {
+  text-align:center;
+}
+
+#graph {
+  float:left;
+  width: 60%;
+}
+
+#foods {
+  float:right;
+  width: 30%;
+}
+
+a.eaten {
+  display:block;
+  padding: 0px 0 15px 0;
+  border-bottom: 1px solid #ccc;
+  color: @main-color;
+  margin: 0 0 15px 0;
+}
+
+.details {
+  width: 75%;
+  margin: 0 auto;
+  text-align:left;
+
+  p {
+    border-bottom: 1px solid #fff;
+
+  }
+}
+
+.deets {
+  position: absolute;
+  top:70px;
+  left: 25%;
+  width: 90%;
+  max-width: 700px;
+  min-width: 320px;
+  height: auto;
+  z-index: 2000;
+}
+
+.md-content {
+  padding-top: 25px;
+  padding-bottom: 25px;
+
+  button {
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: #fff;
+  }
+}
+
+#results {
+  background-color: @main-color;
+  border-radius: 4px;
+  box-shadow: inset 0px 0px 5px #406b78;
+}
+
+.food-result{
+  border-bottom: 1px solid #fff;
+  padding: 10px 0;
+
+  h4 {
+    margin-bottom: 0;
+  }
+
+}
+
+.result-selected {
+  color: #406b78;
+  border-bottom: 3px solid #406b78;
 }
 
 
@@ -83,6 +309,7 @@
 	position: relative;
 	border-radius: 3px;
 	margin: 0 auto;
+  text-align:center;
 
   input {
     color: #333;
@@ -102,7 +329,7 @@
 
 .md-content > div {
 	padding: 15px 40px 30px;
-	margin: 0;
+	margin: 0 auto;
 	font-weight: 300;
 	font-size: 1.15em;
 }
