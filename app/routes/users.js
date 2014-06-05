@@ -40,7 +40,9 @@ exports.update = (req,res)=>{
   User.findByUserId(req.session.userId, u=>{
     u.updateIntake(req.body, ()=>{
       u.updateStats(u, ()=>{
-        res.render('users/dashboard', {user:u});
+        res.render('users/dashboard', {user:u}, (err, html)=>{
+					res.send({user: u, html: html});
+				});
       });
     });
   });
