@@ -72,16 +72,16 @@ class User{
       totalCarbs += user.intake[i].carbs * 1;
       totalFat += user.intake[i].fat * 1;
 
-      user.stats.totalCals = totalCals;
-      user.stats.totalChol = totalChol;
-      user.stats.totalFiber = totalFiber;
-      user.stats.totalProtein = totalProtein;
-      user.stats.totalSodium = totalSodium;
-      user.stats.totalSugar = totalSugar;
-      user.stats.totalCarbs = totalCarbs;
-      user.stats.totalFat = totalFat;
+      user.stats.totalCals = parseInt(totalCals);
+      user.stats.totalChol = parseInt(totalChol);
+      user.stats.totalFiber = parseInt(totalFiber);
+      user.stats.totalProtein = parseInt(totalProtein);
+      user.stats.totalSodium = parseInt(totalSodium);
+      user.stats.totalSugar = parseInt(totalSugar);
+      user.stats.totalCarbs = parseInt(totalCarbs);
+      user.stats.totalFat = parseInt(totalFat);
     }
-    
+
     users.save(this, ()=>fn(this));
   }
 
